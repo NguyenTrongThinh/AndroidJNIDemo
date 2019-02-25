@@ -17,13 +17,15 @@ Java_com_example_nativec_MainActivity_Add(JNIEnv *env, jobject unusedObject, job
     jmethodID num1MethodIDgetImage = env->GetMethodID(num1, "getImage", "()D");
     jmethodID num2MethodIDgetReal = env->GetMethodID(num2, "getReal", "()D");
     jmethodID num2MethodIDgetImage = env->GetMethodID(num2, "getImage", "()D");
-    complex1.setReal(env->CallIntMethod(no1, num1MethodIDgetReal));
-    complex2.setReal(env->CallIntMethod(no2, num2MethodIDgetReal));
-    complex1.setImage(env->CallIntMethod(no1, num1MethodIDgetImage));
-    complex2.setImage(env->CallIntMethod(no2, num2MethodIDgetImage));
+    complex1.setReal(env->CallDoubleMethod(no1, num1MethodIDgetReal));
+    complex1.setImage(env->CallDoubleMethod(no1, num1MethodIDgetImage));
+
+    complex2.setReal(env->CallDoubleMethod(no2, num2MethodIDgetReal));
+    complex2.setImage(env->CallDoubleMethod(no2, num2MethodIDgetImage));
     complex3 = complex1 + complex2;
     //C++ class to java class
-    jclass numberClass = env->FindClass("Lcom/example/nativec/Complex;");
+    jclass numberClass = env->FindClass("com/example/nativec/Complex");
+
     jmethodID midConstructor = env->GetMethodID(numberClass, "<init>", "(DD)V");
     jobject complexObject = env->NewObject(numberClass, midConstructor, complex3.getReal(),
                                            complex3.getImage());
