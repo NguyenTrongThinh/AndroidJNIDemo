@@ -15,17 +15,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Number number1 = new Number(3, 3);
-        Number number2 = new Number(5, 2);
-        Number number3 = Add(number1, number2);
+        Complex complex1 = new Complex(3, 3);
+        Complex complex2 = new Complex(5, 2);
+        Complex complex3 = Add(complex1, complex2);
         // Example of a call to a native method
         TextView tv = findViewById(R.id.sample_text);
-        tv.setText(number3.getReal() + "+" + number3.getImage() + "i");
+        tv.setText(complex3.getReal() + "+" + complex3.getImage() + "i");
     }
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    public native Number Add(Number no1, Number no2);
+    public native Complex Add(Complex no1, Complex no2);
 }
